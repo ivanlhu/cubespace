@@ -24,17 +24,20 @@ function startGame() {
 var start_t = Date.now();
 var end_t = start_t;
 var paused = false;
+var lag_threshold = 100;
 
 var render = function () {
 	requestAnimationFrame( render );
 
 	renderer.render(scene, camera);
-	
+
 	start_t = end_t;
 	end_t = Date.now();
 
-	processEvents(end_t - start_t);
-	update(end_t - start_t);
+	t = Math.min(lag_threshold, end_t - start_t);
+
+	processEvents(t);
+	update(t);
 };
 
 // Variable settings
@@ -71,10 +74,10 @@ function update(t) {
 	camX = Math.max(-maxSpeed, Math.min(camX * 0.95, maxSpeed)); camY = Math.max(-maxSpeed, Math.min(camY * 0.95, maxSpeed));
 
     collision();
-    
+
 	cubeGen(t, materials[Math.floor(camera.position.z / (transitionLength * (1+(0.08*Math.floor(camera.position.z / transitionLength))))) % colors.length]);
 	cleanup(t);
-    
+
         canvas = document.getElementById("canvas");
 }
 
@@ -126,14 +129,14 @@ function cubeGen(t, mat) {
 // Test whether or not the camera location intersects a cube
 function collisionTest() {
     for (i = 0; i < scene.children.length; i++)
-    {       
+    {
         if(camera.position.x >= scene.children[i].position.x - 0.6
            && camera.position.x <= scene.children[i].position.x + 0.6
            && camera.position.y >= scene.children[i].position.y - 0.6
            && camera.position.y <= scene.children[i].position.y + 0.6
            && camera.position.z >= scene.children[i].position.z - 0.35
            && camera.position.z <= scene.children[i].position.z + 0.35)
-            return true;  
+            return true;
     }
     return false;
 }
