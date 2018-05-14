@@ -1,7 +1,9 @@
 # Cubespace
 A 3D version of the famous game Cubefield.
 
-*To run*
+Play now [here!](https://ivanlhu.github.io/cubespace/cubespace.html)
+
+*To run on your computer*
 
 Download all the files and make sure they are in the same folder. Open cubespace.html with your browser to play.
 
