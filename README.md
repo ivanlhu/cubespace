@@ -1,7 +1,7 @@
 # Cubespace
 A 3D version of the famous game Cubefield.
 
-Play now [here!](https://ilh37.github.io/cubespace/cubespace.html)
+Play now [here!](https://ivanlhu.github.io/cubespace/cubespace.html)
 
 *To run on your computer*
 
